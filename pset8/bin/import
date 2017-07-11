@@ -1,6 +1,20 @@
 #!/usr/bin/env php
 <?php
 
-    // TODO
+/**
+ *  file - import.php
+ * problem set8
+ * 
+ * usage ./import /path/to/US.txt
+ * 
+ * made by -sunil kumar
+ * imports data from US.txt
+ * */
 
+// ensures correct usage
+if ($argc != 2)
+{
+	print("Usage: ./import text");
+	exit(1);
+}
 ?>
