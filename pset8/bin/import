@@ -14,21 +14,21 @@
 // ensures correct usage
 if ($argc != 2)
 {
-	print("Usage: ./import text");
+	print("Usage: ./import text\n");
 	exit(1);
 }
 
 // checking if file exists
 if(!file_exists($argv[1]))
 {
-    print "file don't exit provide correct path";
+    print "file don't exit provide correct path\n";
     exit(1);
 }
 
 //if exist then check if readable 
 if(!is_readable($argv[1]))
 {
-    print "file not readable";
+    print "file not readable\n";
     exit(1);
 }
 ?>
