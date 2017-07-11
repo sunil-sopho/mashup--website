@@ -10,6 +10,9 @@
  * made by -sunil kumar
  * imports data from US.txt
  * */
+// required files
+require("../includes/config.php");
+
 
 // ensures correct usage
 if ($argc != 2)
