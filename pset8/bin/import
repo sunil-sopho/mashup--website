@@ -35,6 +35,13 @@ if (!is_readable($argv[1]))
 //opening csv file for import of data
 $handle = fopen($argv[1],"r");
 
+// checking if file opened successfully
+if($handle == false)
+{
+    print "file was not opened successfuly";
+    exit(1);
+}
+
 //getting line by line input and delemeter is \t(tab) set second 
 //argument to 0 to make maximum length to infinite
 while($line = fgetcsv($handle,0,"\t"))
