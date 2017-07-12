@@ -74,7 +74,14 @@ $(function() {
  */
 function addMarker(place)
 {
-    // TODO
+    // creating marker
+    var marker = new google.maps.Marker({
+        position: new google.maps.LatLng(place.latitude, place.longitude),
+        map: map,
+        title: 'hello world'
+    });
+    Markers.push(marker);
+    
 }
 
 /**
@@ -105,6 +112,7 @@ function configure()
         minLength: 1
     },
     {
+        // need to add css to suggestion to make them look more appealing
         source: search,
         templates: {
             empty: "no places found yet",
