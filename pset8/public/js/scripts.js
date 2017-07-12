@@ -108,7 +108,7 @@ function loadinfo(place, marker)
     {
         //if there is no news in postal_code then call using place_name 
         
-        if(data.lenght == 0)
+        if(data.length == 0)
         {
             // this time use differnt way then previous request just to try different syntax
             $.getJSON("articles.php","geo=" + place.place_name)
