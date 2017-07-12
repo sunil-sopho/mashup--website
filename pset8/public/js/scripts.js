@@ -94,7 +94,7 @@ function addMarker(place)
 		      + ", " + place.postal_code,
     });
     
-    google.maps.event.addListner(marker,"click",loadinfo(marker,place));
+    google.maps.event.addListner(marker,"click",function(){loadinfo(marker,place)});
     Markers.push(marker);
     
 }
@@ -102,6 +102,7 @@ function addMarker(place)
 // loads marker into window or map
 function loadinfo(place, marker)
 {
+    showInfo(marker);
     $.getJSON("articles.php",{geo: place.postal_code
     })
     .done(function(data, textstatus, jqXHR)
@@ -137,6 +138,27 @@ function loadinfo(place, marker)
             showInfo(marker, news);
         }
     });
+}
+
+function htmlInfoWindow(data)
+{
+    // start a unordered list
+    var ul = "<ul>";
+    // create a template
+    var temp = _.template("<li> <a href = '<%- link %>' target= '_blank'><%- title %></a>,/li>");
+    
+    // inserting link and title into template
+    for(var i=0, n = data.length;i<n;i++)
+    {
+        ul+=temp({
+            link:data[i].link,
+            title:data[i].title
+            
+        });
+    }
+    // ending unordered list
+    ul += "</ul>";
+    return ul;
 }
 
 /**
