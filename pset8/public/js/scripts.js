@@ -93,8 +93,50 @@ function addMarker(place)
 	labelContent: place.place_name + ", " + place.admin_name1 
 		      + ", " + place.postal_code,
     });
+    
+    google.maps.event.addListner(marker,"click",loadinfo(marker,place));
     Markers.push(marker);
     
+}
+
+// loads marker into window or map
+function loadinfo(place, marker)
+{
+    $.getJSON("articles.php",{geo: place.postal_code
+    })
+    .done(function(data, textstatus, jqXHR)
+    {
+        //if there is no news in postal_code then call using place_name 
+        
+        if(data.lenght == 0)
+        {
+            // this time use differnt way then previous request just to try different syntax
+            $.getJSON("articles.php","geo=" + place.place_name)
+            .done(function(data,textStatus,jqXHR)
+            {
+                // if there is no news still show no news
+                if(data.length == 0)
+                {
+                    showInfo(marker, "No news for this area");
+                }
+                //else if news exist then call htmlinfowindow to create daynamic list
+                else
+                {
+                    news = htmlInfoWindow(data);
+                    // show the news
+                    showInfo(marker, news);
+                }
+            });
+        }
+        // news exist in postal_code 
+        else 
+        {
+            // make a dyanamic list of news
+            news = htmlInfoWindow(data);
+            // show news
+            showInfo(marker, news);
+        }
+    });
 }
 
 /**
