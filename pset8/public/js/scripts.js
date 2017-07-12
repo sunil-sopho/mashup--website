@@ -13,7 +13,7 @@
 var map;
 
 // markers for map
-var markers = [];
+var Markers = [];
 
 // info window
 var info = new google.maps.InfoWindow();
@@ -101,7 +101,8 @@ function addMarker(place)
 	})
 	.done(function(data, textStatus, jqXHR) 
 	{
-	    // if there is no news, tell user no news
+	    // if there is no news, tell user no news check for again using postal_name is notdone as that will 
+	    //make it too large and i don't know if it is really needed
 	    if (data.length === 0)
 	    {
 		showInfo(marker, "No News.");
@@ -137,7 +138,7 @@ function addMarker(place)
     Markers.push(marker);
     
 }
-
+/*
 // loads marker into window or map
 function loadinfo(place, marker)
 {
@@ -198,7 +199,7 @@ function htmlInfoWindow(data)
     // ending unordered list
     ul += "</ul>";
     return ul;
-}
+}*/
 
 /**
  * Configures application.
@@ -283,7 +284,11 @@ function hideInfo()
  */
 function removeMarkers()
 {
-    // TODO
+    for(var i=0;i<Markers.length;i++)
+    {
+        Markers[i]=setMap(null);
+    }
+    Markers.length = 0;
 }
 
 /**
