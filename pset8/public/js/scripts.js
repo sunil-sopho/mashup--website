@@ -94,7 +94,46 @@ function addMarker(place)
 		      + ", " + place.postal_code,
     });
     
-    google.maps.event.addListner(marker,"click",function(){loadinfo(marker,place)});
+    google.maps.event.addListener(marker, "click", function() {
+	showInfo(marker);
+	$.getJSON("articles.php", {
+	    geo: place.postal_code
+	})
+	.done(function(data, textStatus, jqXHR) 
+	{
+	    // if there is no news, tell user no news
+	    if (data.length === 0)
+	    {
+		showInfo(marker, "No News.");
+	    }
+	    // else if there is news, displays news in unordered list
+	    else
+	    {
+		// start unordered list
+		var ul = "<ul>";	
+
+		// create template
+		var template = _.template("<li><a href = '<%- link %>' target = '_blank'><%- title %></a></li>");
+		
+		// use template to insert content
+		for (var i = 0, n = data.length; i < n; i++)
+		{
+		    ul += template({
+			link: data[i].link,
+			title: data[i].title
+		    }); 
+		}
+
+		// end unordered list
+		ul += "</ul>";	
+		
+		// show news
+		showInfo(marker, ul);
+	    }
+	});
+    });
+    
+   // google.maps.event.addListner(marker,"click",function(){loadinfo(marker,place)});
     Markers.push(marker);
     
 }
