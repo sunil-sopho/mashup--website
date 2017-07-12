@@ -75,10 +75,16 @@ $(function() {
 function addMarker(place)
 {
     // creating marker
+    
     var marker = new google.maps.Marker({
-        position: new google.maps.LatLng(place.latitude, place.longitude),
-        map: map,
-        title: 'hello world'
+	icon: "https://developers.google.com/maps/documentation/javascript/examples/full/images/beachflag.png",	
+	position: new google.maps.LatLng(place.latitude, place.longitude),
+	map: map,
+	label: place.place_name + ", " + place.admin_name1 
+		      + ", " + place.postal_code,
+	anchor: new google.maps.Point(200, 0),
+	labelOrigin: new google.maps.Point(200,0),
+//	labelClass: "label"
     });
     Markers.push(marker);
     
