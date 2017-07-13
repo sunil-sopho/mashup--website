@@ -337,7 +337,16 @@ function funk()
               lat: position.coords.latitude,
               lng: position.coords.longitude
             };
-
+            var geocoder = new google.maps.Geocoder();
+            
+            var latlng = new google.maps.LatLng(pos.lat, pos.lng);
+            geocoder.geocode({'latLng': latlng}, function(results, status) {
+                if(status == google.maps.GeocoderStatus.OK)
+                {
+                alert(results[1]['formatted_address']);
+                };
+            });
+            
             infoWindow.setPosition(pos);
             infoWindow.setContent('Location found.');
             infoWindow.open(map);
