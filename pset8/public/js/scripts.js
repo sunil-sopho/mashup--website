@@ -321,3 +321,8 @@ function update()
          console.log(errorThrown.toString());
      });
 }
+
+function funk()
+{
+    alert("hi");
+}
