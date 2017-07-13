@@ -111,24 +111,8 @@ function addMarker(place)
 	    else
 	    {
 		// start unordered list
-		var ul = "<ul>";	
-
-		// create template
-		var template = _.template("<li><a href = '<%- link %>' target = '_blank'><%- title %></a></li>");
-		
-		// use template to insert content
-		for (var i = 0, n = data.length; i < n; i++)
-		{
-		    ul += template({
-			link: data[i].link,
-			title: data[i].title
-		    }); 
-		}
-
-		// end unordered list
-		ul += "</ul>";	
-		
-		// show news
+		var ul = htmlInfoWindow(data);//"<ul>";	
+        // show markers
 		showInfo(marker, ul);
 	    }
 	});
@@ -179,7 +163,7 @@ function loadinfo(place, marker)
         }
     });
 }
-
+*/
 function htmlInfoWindow(data)
 {
     // start a unordered list
@@ -199,7 +183,7 @@ function htmlInfoWindow(data)
     // ending unordered list
     ul += "</ul>";
     return ul;
-}*/
+}
 
 /**
  * Configures application.
