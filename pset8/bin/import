@@ -11,13 +11,13 @@
  * imports data from US.txt
  * */
 // required files
-require("../includes/config.php");
+require(__DIR__ ."/../includes/config.php");
 
 
 // ensures correct usage
 if ($argc != 2)
 {
-	print("Usage: ./import text\n");
+	print("Usage: ./import /path/to/US.txt\n");
 	exit(1);
 }
 
