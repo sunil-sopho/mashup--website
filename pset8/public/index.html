@@ -13,7 +13,8 @@ A mashup of Google Maps and Google News.
 
 <html>
     <head>
-
+        
+        <meta charset="utf-8">
         <!-- http://getbootstrap.com/ -->
         <link href="/css/bootstrap.min.css" rel="stylesheet"/>
 
@@ -60,7 +61,8 @@ A mashup of Google Maps and Google News.
                 </div>
             </form>
         </div>
-         <div id="but"><form onsubmit="return funk()"><input type="submit" value="submit">Click Me!</input></<form></div> 
-         
+         <div id="but"><form onsubmit=" funk(); return false;"><input type="submit" value="submit"></input></<form></div> 
+
+
     </body>
 </html>
