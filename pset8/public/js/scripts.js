@@ -333,12 +333,18 @@ function funk()
         // Try HTML5 geolocation.
         if (navigator.geolocation) {
             navigator.geolocation.getCurrentPosition(function(position) {
+                
+                // saving local cordinates
                 var pos = {
                     lat: position.coords.latitude,
                     lng: position.coords.longitude
                 };
+                
+                // starting geocoder
                 var geocoder = new google.maps.Geocoder();
                 var city;
+                
+                // function to find cityname from object addresscomponents
                 var findResult = function(results, name){
                     var result =  _.find(results, function(obj){
                         return obj.types[0] == name && obj.types[1] == "political";
@@ -346,19 +352,26 @@ function funk()
                     return result ? result.short_name : null;
                 };
             
+                // changing ps=ostion to google latlng to be needed for making marker
                 var latlng = new google.maps.LatLng(pos.lat, pos.lng);
                 geocoder.geocode({'latLng': latlng}, function(results, status) {
                     if(status == google.maps.GeocoderStatus.OK)
                     {
                         results = results[0].address_components;
                         city = findResult(results, "locality");
+                        
+                        // create a marker 
                          var marker = new MarkerWithLabel({
         	        icon: "http://maps.google.com/mapfiles/kml/pal2/icon31.png",	
 	                position: latlng,
 	                map: map,
 	                labelContent:"<p id = 'places'>"+ city +"</p>",
                 });
-            
+                    /**
+                     * this  is not created as if it was created and we draged the map then user loaction will have 
+                      *removed which we don't want as if country of user is not us then map will not show markers of his relavance
+                      * */
+                    //Markers.push(marker);
             
                     showInfo(marker);
                         
@@ -366,9 +379,9 @@ function funk()
                 });
                
             
-            infoWindow.setPosition(pos);
-            infoWindow.setContent('Location found.');
-            infoWindow.open(map);
+            //infoWindow.setPosition(pos);
+            //infoWindow.setContent('Location found.');
+            //infoWindow.open(map);
             map.setCenter(pos);
           }, function() {
             handleLocationError(true, infoWindow, map.getCenter());
