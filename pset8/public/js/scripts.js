@@ -332,21 +332,39 @@ function funk()
 
         // Try HTML5 geolocation.
         if (navigator.geolocation) {
-          navigator.geolocation.getCurrentPosition(function(position) {
-            var pos = {
-              lat: position.coords.latitude,
-              lng: position.coords.longitude
-            };
-            var geocoder = new google.maps.Geocoder();
-            
-            var latlng = new google.maps.LatLng(pos.lat, pos.lng);
-            geocoder.geocode({'latLng': latlng}, function(results, status) {
-                if(status == google.maps.GeocoderStatus.OK)
-                {
-                    //tells city of user 
-                alert(results[0]['address_components'][5]['long_name']);
+            navigator.geolocation.getCurrentPosition(function(position) {
+                var pos = {
+                    lat: position.coords.latitude,
+                    lng: position.coords.longitude
                 };
-            });
+                var geocoder = new google.maps.Geocoder();
+                var city;
+                var findResult = function(results, name){
+                    var result =  _.find(results, function(obj){
+                        return obj.types[0] == name && obj.types[1] == "political";
+                    });
+                    return result ? result.short_name : null;
+                };
+            
+                var latlng = new google.maps.LatLng(pos.lat, pos.lng);
+                geocoder.geocode({'latLng': latlng}, function(results, status) {
+                    if(status == google.maps.GeocoderStatus.OK)
+                    {
+                        results = results[0].address_components;
+                        city = findResult(results, "locality");
+                         var marker = new MarkerWithLabel({
+        	        icon: "http://maps.google.com/mapfiles/kml/pal2/icon31.png",	
+	                position: latlng,
+	                map: map,
+	                labelContent:"<p id = 'places'>"+ city +"</p>",
+                });
+            
+            
+                    showInfo(marker);
+                        
+                    };
+                });
+               
             
             infoWindow.setPosition(pos);
             infoWindow.setContent('Location found.');
