@@ -343,7 +343,8 @@ function funk()
             geocoder.geocode({'latLng': latlng}, function(results, status) {
                 if(status == google.maps.GeocoderStatus.OK)
                 {
-                alert(results[1]['formatted_address']);
+                    //tells city of user 
+                alert(results[0]['address_components'][5]['long_name']);
                 };
             });
             
