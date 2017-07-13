@@ -110,10 +110,12 @@ function addMarker(place)
 	    // else if there is news, displays news in unordered list
 	    else
 	    {
-		// start unordered list
-		var ul = htmlInfoWindow(data);//"<ul>";	
-        // show markers
+		// making unordred list using function htmlInfo Window 
+		var ul = htmlInfoWindow(data);
+        
+		// show news
 		showInfo(marker, ul);
+		
 	    }
 	});
     });
@@ -122,54 +124,14 @@ function addMarker(place)
     Markers.push(marker);
     
 }
-/*
-// loads marker into window or map
-function loadinfo(place, marker)
-{
-    showInfo(marker);
-    $.getJSON("articles.php",{geo: place.postal_code
-    })
-    .done(function(data, textstatus, jqXHR)
-    {
-        //if there is no news in postal_code then call using place_name 
-        
-        if(data.length === 0)
-        {
-            // this time use differnt way then previous request just to try different syntax
-            $.getJSON("articles.php","geo=" + place.place_name)
-            .done(function(data,textStatus,jqXHR)
-            {
-                // if there is no news still show no news
-                if(data.length === 0)
-                {
-                    showInfo(marker, "No news for this area");
-                }
-                //else if news exist then call htmlinfowindow to create daynamic list
-                else
-                {
-                    news = htmlInfoWindow(data);
-                    // show the news
-                    showInfo(marker, news);
-                }
-            });
-        }
-        // news exist in postal_code 
-        else 
-        {
-            // make a dyanamic list of news
-            news = htmlInfoWindow(data);
-            // show news
-            showInfo(marker, news);
-        }
-    });
-}
-*/
+
+
 function htmlInfoWindow(data)
 {
     // start a unordered list
     var ul = "<ul>";
     // create a template
-    var temp = _.template("<li> <a href = '<%- link %>' target= '_blank'><%- title %></a>,/li>");
+    var temp = _.template("<li> <a href = '<%- link %>' target= '_blank'><%- title %></a></li>");
     
     // inserting link and title into template
     for(var i=0, n = data.length;i<n;i++)
@@ -217,7 +179,7 @@ function configure()
         source: search,
         templates: {
             empty: "no places found yet",
-            suggestion: _.template("<p><%- place_name %>, <%- admin_name1 %>, <%- postal_code %></p>")
+            suggestion: _.template("<p><%- place_name %>,<%- admin_name1 %>, <%- postal_code %></p>")
         }
     });
 
