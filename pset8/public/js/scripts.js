@@ -232,7 +232,7 @@ function removeMarkers()
 {
     for(var i=0;i<Markers.length;i++)
     {
-        Markers[i]=setMap(null);
+        Markers[i].setMap(null);
     }
     Markers.length = 0;
 }
