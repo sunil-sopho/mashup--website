@@ -97,6 +97,7 @@ html, body, #map-canvas, .container-fluid
     margin: 0;
 }
 
+
 #places
 {
     margin: 0;
@@ -105,4 +106,14 @@ html, body, #map-canvas, .container-fluid
 	font-style: normal;
 	font-weight: 400;
 	font-size: 1.3em;
+}
+#search
+{
+    margin: 0;
+	color: #333;
+	font-family: source-sans-pro;
+	font-style: normal;
+	font-weight: 300;
+	font-size: 1em;
+	padding:6px 12px;
 }

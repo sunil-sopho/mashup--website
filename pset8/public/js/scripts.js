@@ -67,6 +67,7 @@ $(function() {
     // configure UI once Google Map is idle (i.e., loaded)
     google.maps.event.addListenerOnce(map, "idle", configure);
 
+     
 });
 
 /**
@@ -179,7 +180,7 @@ function configure()
         source: search,
         templates: {
             empty: "no places found yet",
-            suggestion: _.template("<p><%- place_name %>,<%- admin_name1 %>, <%- postal_code %></p>")
+            suggestion: _.template("<p id ='search'><%- place_name %>,<%- admin_name1 %>, <%- postal_code %></p>")
         }
     });
 
