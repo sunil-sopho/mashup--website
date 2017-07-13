@@ -366,7 +366,7 @@ function funk()
 	                position: latlng,
 	                map: map,
 	                labelContent:"<p id = 'places'>"+ city +"</p>",
-                });
+                    });
                     /**
                      * this  is not created as if it was created and we draged the map then user loaction will have 
                       *removed which we don't want as if country of user is not us then map will not show markers of his relavance
@@ -374,10 +374,38 @@ function funk()
                     //Markers.push(marker);
             
                     showInfo(marker);
-                        
+                    
+                    // for making news
+                    google.maps.event.addListener(marker, "click", function() {
+	                showInfo(marker);
+	                $.getJSON("articles.php", {
+	                geo: city,
+	                })
+	.done(function(data, textStatus, jqXHR) 
+	{
+	    // if there is no news, tell user no news check for again using postal_name is notdone as that will 
+	    //make it too large and i don't know if it is really needed
+	    if (data.length === 0)
+	    {
+		showInfo(marker, "No News.");
+	    }
+	    // else if there is news, displays news in unordered list
+	    else
+	    {
+		// making unordred list using function htmlInfo Window 
+		var ul = htmlInfoWindow(data);
+        
+		// show news
+		showInfo(marker, ul);
+		
+	    }
+	});
+    });
                     };
                 });
                
+            
+           
             
             //infoWindow.setPosition(pos);
             //infoWindow.setContent('Location found.');
@@ -397,7 +425,7 @@ function funk()
         infoWindow.setContent(browserHasGeolocation ?
                               'Error: The Geolocation service failed.' :
                               'Error: Your browser doesn\'t support geolocation.');
-        infoWindow.open(map);
+       // infoWindow.open(map);
       
     return false;
 }
