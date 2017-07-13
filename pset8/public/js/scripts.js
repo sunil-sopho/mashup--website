@@ -90,8 +90,8 @@ function addMarker(place)
 	icon: "http://maps.google.com/mapfiles/kml/pal2/icon31.png",	
 	position: new google.maps.LatLng(place.latitude, place.longitude),
 	map: map,
-	labelContent: place.place_name + ", " + place.admin_name1 
-		      + ", " + place.postal_code,
+	labelContent:"<p id = 'places'>"+ place.place_name + ", " + place.admin_name1 
+		      + ", " + place.postal_code+"</p>",
     });
     
     google.maps.event.addListener(marker, "click", function() {

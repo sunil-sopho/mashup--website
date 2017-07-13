@@ -96,3 +96,13 @@ html, body, #map-canvas, .container-fluid
 .tt-suggestion p {
     margin: 0;
 }
+
+#places
+{
+    margin: 0;
+	color: #451C1C;
+	font-family: source-sans-pro;
+	font-style: normal;
+	font-weight: 400;
+	font-size: 1.3em;
+}
