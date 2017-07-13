@@ -35,11 +35,11 @@ html, body, #map-canvas, .container-fluid
     /* distance from top edge of viewport */
     top: 28px;
 }
-
+/*local news menu*/
 #but
 {
-    left:100px;
-    top: 80px;
+    right:100px;
+    top: 28px;
     position: absolute;
 }
 /* stylize text box */
@@ -122,4 +122,33 @@ html, body, #map-canvas, .container-fluid
 	font-weight: 300;
 	font-size: 1em;
 	padding:6px 12px;
+}
+#local
+{
+    color: #333;
+    font-family: source-sans-pro;
+    font-style: normal;
+    font-size: 1.2em;
+    padding:0px 8px;
+    margin: 0 0 0px;
+}
+
+.button {
+    background-color: white; 
+    border: 2px solid #4CAF50;
+    color: black;
+    padding: 5px 20px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+	border-radius: 8px;
+	 -webkit-transition-duration: 0.4s; /* Safari */
+    transition-duration: 0.4s;
+    margin-left: 45px;
+}
+.button:hover {
+color: white;
+    background-color: #4CAF50; 
+    border-radius: 8px;
 }

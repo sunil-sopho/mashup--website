@@ -322,6 +322,10 @@ function update()
      });
 }
 
+
+// addtionaly functionality personal touch
+// find user location then find its city ,get city news
+// and showmarker at his location and show local news there in info window of marker
 function funk()
 {
     //taking input from user in a window prompt
