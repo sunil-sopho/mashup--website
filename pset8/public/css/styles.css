@@ -36,6 +36,12 @@ html, body, #map-canvas, .container-fluid
     top: 28px;
 }
 
+#but
+{
+    left:100px;
+    top: 80px;
+    position: absolute;
+}
 /* stylize text box */
 #q
 {
